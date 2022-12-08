@@ -6,7 +6,7 @@ under specific instructions. Then, at the end of this project, you will be able 
 your own operating system while implementing strict rules.
 
 # After installing Debian 
-##<a href="en.subject.pdf"> subject</a>
+## <a href="en.subject.pdf"> subject</a>
 ## login as root
 `su -`
 >su stand for substitute user or super user and the - stand for -l or -login  
