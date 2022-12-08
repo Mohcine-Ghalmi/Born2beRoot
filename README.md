@@ -1,5 +1,5 @@
 # Born2beRoot
-
+<img src="Screenshot from 2022-12-08 18-31-53.png">
 >This project aims to introduce you to the wonderful world of virtualization.
 You will create your first machine in VirtualBox (or UTM if you can’t use VirtualBox)
 under specific instructions. Then, at the end of this project, you will be able to set up
