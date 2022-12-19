@@ -911,6 +911,13 @@ two of them are not identical, your grade will be 0._
 	
 ## Bonus
 
+>In a typical setup, a web server, such as Lighttpd, sits between a website and a database management system (DBMS), such as MariaDB, to provide access to the website's data and content. When a user requests a web page from the website, the request is sent to the web server. The web server then uses the PHP programming language to execute any necessary code and access the DBMS to retrieve the necessary data, such as the text and images for the web page. The DBMS retrieves the data from the database and sends it back to the web server. The web server then assembles the data into a web page and sends it back to the user's web browser, which displays the page.
+
+  ```User (web browser) ----------> Webserver (Lighttpd) ----------> PHP ----------> DBMS (MariaDB, database)```
+                                                     
+>In this setup, the web server acts as an intermediary between the user's web browser and the DBMS, handling requests and responses and managing the flow of data between the two. The PHP language is used to execute the necessary code on the server to access the DBMS and retrieve the data from the database. The DBMS, on the other hand, is responsible for storing and organizing the website's data in the database, as well as providing the necessary tools and interfaces for accessing and manipulating the data.
+
+
 ### Linux Lighttpd MariaDB PHP *(LLMP)* Stack
 
 #### Step 1: Installing Lighttpd
