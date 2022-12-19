@@ -908,3 +908,146 @@ file:
   
 ⚠️ **WARNING:** _It is of course FORBIDDEN to turn in your virtual machine in your Git repository. During the defense, the signature of the signature.txt file will be compared with the one of your virtual machine. If the
 two of them are not identical, your grade will be 0._
+	
+## Bonus
+
+### Linux Lighttpd MariaDB PHP *(LLMP)* Stack
+
+#### Step 1: Installing Lighttpd
+Install *lighttpd* via `sudo apt install lighttpd`.
+```
+$ sudo apt install lighttpd
+```
+Verify whether *lighttpd* was successfully installed via `dpkg -l | grep lighttpd`.
+```
+$ dpkg -l | grep lighttpd
+```
+Allow incoming connections using Port 80 via `sudo ufw allow 80`.
+```
+$ sudo ufw allow 80
+```
+
+#### Installing & Configuring MariaDB
+Install *mariadb-server* via `sudo apt install mariadb-server`.
+```
+$ sudo apt install mariadb-server
+```
+Verify whether *mariadb-server* was successfully installed via `dpkg -l | grep mariadb-server`.
+```
+$ dpkg -l | grep mariadb-server
+```
+Start interactive script to remove insecure default settings via `sudo mysql_secure_installation`.
+```
+$ sudo mysql_secure_installation
+Enter current password for root (enter for none): #Just press Enter (do not confuse database root with system root)
+Set root password? [Y/n] n
+Remove anonymous users? [Y/n] Y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] Y
+Reload privilege tables now? [Y/n] Y
+```
+Log in to the MariaDB console via `sudo mariadb`.
+```
+$ sudo mariadb
+MariaDB [(none)]>
+```
+Create new database via `CREATE DATABASE <database-name>;`.
+```
+MariaDB [(none)]> CREATE DATABASE <database-name>;
+```
+Create new database user and grant them full privileges on the newly-created database via `GRANT ALL ON <database-name>.* TO '<username-2>'@'localhost' IDENTIFIED BY '<password-2>' WITH GRANT OPTION;`.
+```
+MariaDB [(none)]> GRANT ALL ON <database-name>.* TO '<username-2>'@'localhost' IDENTIFIED BY '<password-2>' WITH GRANT OPTION;
+```
+Flush the privileges via `FLUSH PRIVILEGES;`.
+```
+MariaDB [(none)]> FLUSH PRIVILEGES;
+```
+Exit the MariaDB shell via `exit`.
+```
+MariaDB [(none)]> exit
+```
+Verify whether database user was successfully created by logging in to the MariaDB console via `mariadb -u <username-2> -p`.
+```
+$ mariadb -u <username-2> -p
+Enter password: <password-2>
+MariaDB [(none)]>
+```
+Confirm whether database user has access to the database via `SHOW DATABASES;`.
+```
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| <database-name>    |
+| information_schema |
++--------------------+
+```
+Exit the MariaDB shell via `exit`.
+```
+MariaDB [(none)]> exit
+```
+
+#### Installing PHP
+Install *php-cgi* & *php-mysql* via `sudo apt install php-cgi php-mysql`.
+```
+$ sudo apt install php-cgi php-mysql
+```
+Verify whether *php-cgi* & *php-mysql* was successfully installed via `dpkg -l | grep php`.
+```
+$ dpkg -l | grep php
+```
+
+#### Downloading & Configuring WordPress
+Install *wget* via `sudo apt install wget`.
+```
+$ sudo apt install wget
+```
+Download WordPress to `/var/www/html` via `sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html`.
+```
+$ sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html
+```
+Extract downloaded content via `sudo tar -xzvf /var/www/html/latest.tar.gz`.
+```
+$ sudo tar -xzvf /var/www/html/latest.tar.gz
+```
+Remove tarball via `sudo rm /var/www/html/latest.tar.gz`.
+```
+$ sudo rm /var/www/html/latest.tar.gz
+```
+Copy content of `/var/www/html/wordpress` to `/var/www/html` via `sudo cp -r /var/www/html/wordpress/* /var/www/html`.
+```
+$ sudo cp -r /var/www/html/wordpress/* /var/www/html
+```
+Remove `/var/www/html/wordpress` via `sudo rm -rf /var/www/html/wordpress`
+```
+$ sudo rm -rf /var/www/html/wordpress
+```
+Create WordPress configuration file from its sample via `sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php`.
+```
+$ sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+```
+Configure WordPress to reference previously-created MariaDB database & user via `sudo vi /var/www/html/wp-config.php`.
+```
+$ sudo vi /var/www/html/wp-config.php
+```
+Replace the below
+```
+23 define( 'DB_NAME', 'database_name_here' );^M
+26 define( 'DB_USER', 'username_here' );^M
+29 define( 'DB_PASSWORD', 'password_here' );^M
+```
+with:
+```
+23 define( 'DB_NAME', '<database-name>' );^M
+26 define( 'DB_USER', '<username-2>' );^M
+29 define( 'DB_PASSWORD', '<password-2>' );^M
+```
+
+#### Configuring Lighttpd
+Enable below modules via `sudo lighty-enable-mod fastcgi; sudo lighty-enable-mod fastcgi-php; sudo service lighttpd force-reload`.
+```
+$ sudo lighty-enable-mod fastcgi
+$ sudo lighty-enable-mod fastcgi-php
+$ sudo service lighttpd force-reload
+```
