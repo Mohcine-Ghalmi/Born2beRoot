@@ -1,8 +1,6 @@
 # Born2beRoot
 <img src="Screenshot from 2022-12-08 18-31-53.png">
 
-# Born2beRoot
-
 ## Summary
 _This document is a **System Administration** related exercise._
 
