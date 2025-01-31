@@ -131,7 +131,7 @@ wil42). You will have to modify this hostname during your evaluation._
 expected partitioning:_
 
 >![image](https://user-images.githubusercontent.com/60623613/140404704-3dba0778-8f45-41c8-9cdd-757b2c1d93ec.png)
-### [What is partitioning?](https://www.debian.org/doc/manuals/debian-handbook/sect.installation-steps.en.html#sect.install-partman)
+###[What is partitioning?](https://www.debian.org/doc/manuals/debian-handbook/sect.installation-steps.en.html#sect.install-partman)
 
 >Partitioning, an indispensable step in installation, consists in dividing the available space on the hard drives (each subdivision thereof being called a “partition”) according to the data to be stored on it and the use for which the computer is intended. This step also includes choosing the filesystems to be used. All of these decisions will have an influence on performance, data security, and the administration of the server
 
@@ -521,7 +521,6 @@ be set to 2._
     > `vim /etc/login.defs`
   
     >![image](https://user-images.githubusercontent.com/60623613/141210301-962d6dce-6a80-4735-9dc9-30d31ee4dcd6.png)
-    
 		>![image](https://user-images.githubusercontent.com/60623613/141210381-aab429af-895d-4826-86c1-336036a74388.png)
   - [x] _The user has to receive a warning message 7 days before their password expires._
     
